@@ -13,5 +13,11 @@ yarn ou npm install
 
 ### Bibliotecas Utilizadas
 
+- Yup
 - React
+- AXIOS
+- Toastify
+- Prop Types
+- Router Dom
+- React Hook Form
 - Styled Components
