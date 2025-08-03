@@ -14,3 +14,4 @@ yarn ou npm install
 ### Bibliotecas Utilizadas
 
 - React
+- Styled Components
