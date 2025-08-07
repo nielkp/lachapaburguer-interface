@@ -21,3 +21,4 @@ yarn ou npm install
 - Router Dom
 - React Hook Form
 - Styled Components
+- React Multi Carousel

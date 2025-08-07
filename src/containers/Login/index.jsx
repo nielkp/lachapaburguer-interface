@@ -97,9 +97,12 @@ export function Login() {
           <Button type="submit">Entrar</Button>
         </Form>
 
-        <Link to="/cadastro">
-          Não possui conta? <span>Clique aqui.</span>
-        </Link>
+        <p>
+          Não possui conta?{' '}
+          <Link to="/cadastro">
+            <span>Clique aqui.</span>
+          </Link>
+        </p>
       </RightContainer>
     </Container>
   );

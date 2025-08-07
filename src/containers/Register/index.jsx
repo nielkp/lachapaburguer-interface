@@ -115,9 +115,12 @@ export function Register() {
           </InputContainer>
           <Button type="submit">Criar Conta</Button>
         </Form>
-        <Link to="/login">
-          Já possui conta? <span>Clique aqui.</span>
-        </Link>
+        <p>
+          Já possui conta?{' '}
+          <Link to="/login">
+            <span>Clique aqui.</span>
+          </Link>
+        </p>
       </RightContainer>
     </Container>
   );
