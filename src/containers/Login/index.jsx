@@ -9,7 +9,7 @@ import {
 } from './styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Logo from '../../assets/logotransparente.png';
-import { useUser } from '../../hooks/UserContext';
+//import { useUser } from '../../hooks/UserContext';
 import { Button } from '../../components/Button';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -19,7 +19,7 @@ import * as yup from 'yup';
 
 export function Login() {
   const navigate = useNavigate();
-  const { putUserData } = useUser();
+  //const { putUserData } = useUser();
   const schema = yup
     .object({
       email: yup
@@ -42,7 +42,9 @@ export function Login() {
   });
 
   const onSubmit = async (data) => {
-    const { data: userData } = await toast.promise(
+    const {
+      data: { token },
+    } = await toast.promise(
       api.post('/session', {
         email: data.email,
         password: data.password,
@@ -52,11 +54,7 @@ export function Login() {
         success: {
           render() {
             setTimeout(() => {
-              if (userData?.admin) {
-                navigate('/admin/pedidos');
-              } else {
-                navigate('/');
-              }
+              navigate('/');
             }, 1500);
             return 'Login com sucesso 👌';
           },
@@ -65,8 +63,7 @@ export function Login() {
       }
     );
 
-    putUserData(userData);
-    //localStorage.setItem('token', token);
+    localStorage.setItem('token', token);
   };
 
   return (
