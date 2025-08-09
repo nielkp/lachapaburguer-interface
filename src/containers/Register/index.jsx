@@ -70,17 +70,10 @@ export function Register() {
       } else {
         throw new Error();
       }
-    } catch (error) {
+    } catch {
       toast.error('⚠️ Falha no sistema! Tente novamente.');
     }
   };
-
-  // o => arrow function subistitui a função normal a baixo
-  //
-  // function(data) {
-  //     console.log(data)
-  // }
-  //
 
   return (
     <Container>
