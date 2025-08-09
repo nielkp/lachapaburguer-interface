@@ -47,6 +47,7 @@ export function OffersCarousel() {
         infinite={true}
         portialVisible={false}
         itemClass="carousel-item"
+        arrows={false}
       >
         {offers.map((product) => (
           <CardProduct key={product.id} product={product} />

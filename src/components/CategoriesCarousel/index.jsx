@@ -45,6 +45,7 @@ export function CategoriesCarousel() {
         infinite={true}
         portialVisible={false}
         itemClass="carousel-item"
+        arrows={false}
       >
         {categories.map((category) => (
           <ContainerItems key={category.id} imageUrl={category.url}>
