@@ -6,7 +6,7 @@ export const Banner = styled.div`
   background: url(${BannerHome});
   background-size: cover;
   background-position: center;
-  height: 480px;
+  height: 420px;
 
   h1 {
     font-family: 'Road Rage', sans-serif;
@@ -19,15 +19,14 @@ export const Banner = styled.div`
 `;
 
 export const Container = styled.section`
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f0f0f0;
   background: linear-gradient(
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
     url(${Background});
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 100%;
   margin: 0;
   padding: 0;
   margin-bottom: 0;
@@ -35,6 +34,7 @@ export const Container = styled.section`
 
 export const Content = styled.div`
   width: 100%;
+  padding-bottom: 0;
   padding-bottom: 32px;
 `;
 

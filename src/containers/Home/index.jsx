@@ -7,7 +7,11 @@ export function Home() {
   return (
     <main>
       <Banner>
-        <h1>Bem Vindos!</h1>
+        <h1>
+          Bem Vindos!
+          <br />
+          LA CHAPA BURGUER!
+        </h1>
       </Banner>
       <Container>
         <Content>

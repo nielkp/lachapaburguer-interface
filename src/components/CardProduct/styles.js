@@ -43,8 +43,9 @@ export const Container = styled.div`
 `; //FIM
 
 export const CardImage = styled.img`
-  height: 100px;
-  position: absolute;
-  top: -50px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
   border-radius: 8px;
+  margin-bottom: 12px;
 `; //FIM

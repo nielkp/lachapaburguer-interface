@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Title = styled.h2`
@@ -47,11 +48,19 @@ export const ContainerItems = styled.div`
   height: 200px;
   border-radius: 8px;
   overflow: hidden; /* Garante que a imagem não saia das bordas arredondadas */
+`; //FIM
 
-  p {
-    color: #ffffff;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px 30px;
-    border-radius: 22px;
+export const CategoryButton = styled(Link)`
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px 30px;
+  border-radius: 22px;
+  font-size: 22px;
+  margin-top: 50px;
+  font-weight: 500;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #ec710dff;
   }
 `; //FIM
