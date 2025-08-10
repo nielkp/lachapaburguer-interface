@@ -19,6 +19,7 @@ yarn ou npm install
 - Toastify
 - Prop Types
 - Router Dom
+- Phosphor Icons
 - React Hook Form
 - Styled Components
 - React Multi Carousel
