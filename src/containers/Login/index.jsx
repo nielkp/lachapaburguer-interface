@@ -9,7 +9,7 @@ import {
 } from './styles';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Logo from '../../assets/logotransparente.png';
-//import { useUser } from '../../hooks/UserContext';
+import { useUser } from '../../hooks/UserContext';
 import { Button } from '../../components/Button';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -19,7 +19,8 @@ import * as yup from 'yup';
 
 export function Login() {
   const navigate = useNavigate();
-  //const { putUserData } = useUser();
+  const { putUserData } = useUser();
+
   const schema = yup
     .object({
       email: yup
@@ -42,9 +43,7 @@ export function Login() {
   });
 
   const onSubmit = async (data) => {
-    const {
-      data: { token },
-    } = await toast.promise(
+    const { data: userData } = await toast.promise(
       api.post('/session', {
         email: data.email,
         password: data.password,
@@ -62,8 +61,7 @@ export function Login() {
         error: 'Email ou Senha Incorretos 🤯',
       }
     );
-
-    localStorage.setItem('token', token);
+    putUserData(userData);
   };
 
   return (
