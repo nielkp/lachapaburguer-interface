@@ -1,9 +1,11 @@
 import { formatPrice } from '../../utils/formatPrice';
-import { CartButton } from '../CartButton';
+import { useCart } from '../../hooks/CartContext';
 import { Container, CardImage } from './styles';
+import { CartButton } from '../CartButton';
 import PropTypes from 'prop-types';
 
 export function CardProduct({ product }) {
+  const { putProductInCart } = useCart();
   return (
     <Container>
       <CardImage src={product.url} alt={product.name} />
@@ -12,7 +14,7 @@ export function CardProduct({ product }) {
         <h2>{product.description}</h2>
         <strong>{formatPrice(product.price)}</strong>
       </div>
-      <CartButton></CartButton>
+      <CartButton onClick={() => putProductInCart(product)}></CartButton>
     </Container>
   );
 }
