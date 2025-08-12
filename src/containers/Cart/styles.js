@@ -27,6 +27,23 @@ export const Banner = styled.div`
 
   img {
     height: 200px;
+    max-width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    height: 120px;
+
+    img {
+      height: 140px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    height: 100px;
+
+    img {
+      height: 120px;
+    }
   }
 `; //FIM
 
@@ -48,6 +65,22 @@ export const Title = styled.div`
     height: 4px;
     background-color: greenyellow;
   }
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+    padding: 0 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 24px;
+    padding: 0 15px;
+
+    &::after {
+      left: calc(50% - 20px);
+      width: 40px;
+      height: 3px;
+    }
+  }
 `; //FIM
 
 export const Content = styled.div`
@@ -57,4 +90,16 @@ export const Content = styled.div`
   max-width: 1280px;
   padding: 40px;
   margin: 0 auto;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    gap: 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px;
+    gap: 10px;
+  }
 `; //FIM
