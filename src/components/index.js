@@ -7,4 +7,5 @@ export * from './CategoriesCarousel';
 export * from './Footer';
 export * from './Header';
 export * from './OffersCarousel';
+export * from './Stripe/CheckoutForm';
 export * from './Table';

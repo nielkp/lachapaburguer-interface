@@ -48,8 +48,10 @@ export function Header() {
             </div>
           </Profile>
           <LinkContainer>
-            <ShoppingCartIcon color="#fff" size={33} />
-            <HeaderLink to="/carrinho">Carrinho</HeaderLink>
+            <HeaderLink to="/carrinho">
+              <ShoppingCartIcon color="#fff" size={33} />
+              <span>Carrinho</span>
+            </HeaderLink>
           </LinkContainer>
         </Options>
       </Content>

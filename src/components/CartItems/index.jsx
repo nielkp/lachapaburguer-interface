@@ -57,7 +57,11 @@ export function CartItems() {
             </Table.Tr>
           ))
         ) : (
-          <EmptyCart>Carrinho Vazio</EmptyCart>
+          <Table.Tr>
+            <Table.Td colSpan={6}>
+              <EmptyCart>Carrinho Vazio</EmptyCart>
+            </Table.Td>
+          </Table.Tr>
         )}
       </Table.Body>
     </Table.Root>

@@ -14,6 +14,11 @@ export const Content = styled.div`
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
+  padding: 0 20px;
+
+  @media (max-width: 768px) {
+    padding: 0 10px;
+  }
 `; //FIM
 
 export const Navigation = styled.nav`
@@ -32,6 +37,14 @@ export const Navigation = styled.nav`
     hr {
       height: 24px;
       border: 1px solid #625e5e;
+    }
+  }
+
+  @media (max-width: 768px) {
+    justify-content: flex-start;
+    
+    div {
+      margin-left: 0;
     }
   }
 `; //FIM
@@ -78,6 +91,18 @@ export const LinkContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    span {
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
 `; //FIM
 
 export const Logout = styled.button`
