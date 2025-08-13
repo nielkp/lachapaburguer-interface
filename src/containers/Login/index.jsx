@@ -53,7 +53,11 @@ export function Login() {
         success: {
           render() {
             setTimeout(() => {
-              navigate('/');
+              if (userData?.admin) {
+                navigate('/admin/home');
+              } else {
+                navigate('/');
+              }
             }, 1500);
             return 'Login com sucesso 👌';
           },
