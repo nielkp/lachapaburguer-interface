@@ -54,7 +54,7 @@ export const Container = styled.div`
 `;
 
 export const ContainerItems = styled.div`
-  background: url('${(props) => props.imageUrl}');
+  background: url('${props => props.imageUrl}');
   background-position: center;
   background-size: cover;
   display: flex;

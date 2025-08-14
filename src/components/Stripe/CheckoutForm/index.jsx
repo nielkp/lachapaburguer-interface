@@ -19,7 +19,7 @@ export function CheckoutForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState(null);
 
-  const { address, deliveryTax, total, user } = location.state || {};
+  const { address, deliveryTax, total, user, paymentMethod } = location.state || {};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -83,6 +83,7 @@ export function CheckoutForm() {
           total,
           status: 'Pedido realizado.',
           paymentIntentId: result.paymentIntent.id,
+          paymentMethod: paymentMethod || 'cartao_online',
         };
 
         console.log('Dados do pedido:', orderData);

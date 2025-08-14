@@ -9,6 +9,17 @@ export const Container = styled.div`
   justify-content: space-between;
   margin-bottom: 20px;
 
+  @media (max-width: 768px) {
+    margin-left: 0;
+    margin-bottom: 15px;
+    border-radius: 15px;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+
   input {
     width: 80%;
     margin: 10px auto;
@@ -27,6 +38,18 @@ export const Container = styled.div`
 
     &:focus {
       border-color: #484848;
+    }
+
+    @media (max-width: 768px) {
+      width: 90%;
+      font-size: 14px;
+      padding: 8px;
+    }
+
+    @media (max-width: 480px) {
+      width: 95%;
+      font-size: 12px;
+      padding: 6px;
     }
   }
 
@@ -54,24 +77,78 @@ export const Container = styled.div`
       padding: 14px;
       border-top-right-radius: 20px;
       border-top-left-radius: 20px;
+
+      @media (max-width: 768px) {
+        font-size: 18px;
+        padding: 12px;
+        border-top-right-radius: 15px;
+        border-top-left-radius: 15px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 16px;
+        padding: 10px;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+      }
     }
 
     .items {
       grid-area: items;
       padding-left: 20px;
+
+      @media (max-width: 768px) {
+        padding-left: 15px;
+        font-size: 14px;
+      }
+
+      @media (max-width: 480px) {
+        padding-left: 10px;
+        font-size: 12px;
+      }
     }
 
     .items-price {
       grid-area: items-price;
+
+      @media (max-width: 768px) {
+        font-size: 14px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 12px;
+      }
     }
 
     .delivery-tax {
       grid-area: delivery-tax;
       padding-left: 20px;
+
+      @media (max-width: 768px) {
+        padding-left: 15px;
+        font-size: 14px;
+      }
+
+      @media (max-width: 480px) {
+        padding-left: 10px;
+        font-size: 12px;
+      }
     }
 
     .delivery-tax-price {
       grid-area: delivery-tax-price;
+
+      @media (max-width: 768px) {
+        font-size: 14px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      grid-gap: 3px 20%;
     }
   }
 
@@ -85,6 +162,21 @@ export const Container = styled.div`
 
     * {
       font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 18px;
+      padding: 12px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 16px;
+      padding: 10px;
+      margin-top: 15px;
+      flex-direction: column;
+      gap: 5px;
+      text-align: center;
     }
   }
 
@@ -126,6 +218,18 @@ export const Select = styled.select`
   &:focus {
     border-color: #484848;
   }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  @media (max-width: 480px) {
+    width: 95%;
+    font-size: 12px;
+    padding: 6px;
+  }
 `;
 
 export const LabelSelect = styled.label`
@@ -135,4 +239,15 @@ export const LabelSelect = styled.label`
   font-weight: 600;
   color: #484848;
   display: block;
+
+  @media (max-width: 768px) {
+    padding-left: 15px;
+    font-size: 13px;
+  }
+
+  @media (max-width: 480px) {
+    padding-left: 10px;
+    font-size: 12px;
+    text-align: center;
+  }
 `;

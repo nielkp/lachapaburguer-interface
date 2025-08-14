@@ -4,6 +4,7 @@ import { useCart } from '../../hooks/CartContext';
 import { useUser } from '../../hooks/UserContext';
 import { api } from '../../services/api';
 import { Button } from '../Button';
+import { PaymentMethodSelector } from '../PaymentMethodSelector';
 import { Container, Select, LabelSelect } from './styles';
 import { formatPrice } from '../../utils/formatPrice';
 import { useNavigate } from 'react-router-dom';
@@ -19,8 +20,10 @@ export function CartResume() {
   ];
 
   const [deliveryTax, setDeliveryTax] = useState(deliveryOptions[0].value);
-
   const [address, setAddress] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState('pix');
+  const [changeFor, setChangeFor] = useState(0);
+  const [needsChange, setNeedsChange] = useState(false);
 
   const navigate = useNavigate();
   const { cartProducts, clearCart } = useCart();
@@ -46,6 +49,18 @@ export function CartResume() {
       return;
     }
 
+    // Validação específica para dinheiro
+    if (paymentMethod === 'dinheiro' && needsChange) {
+      if (!changeFor || changeFor <= 0) {
+        toast.warn('Por favor, informe um valor válido para o troco!');
+        return;
+      }
+      if (changeFor * 100 <= totalAmount) {
+        toast.warn('O valor para troco deve ser maior que o total do pedido!');
+        return;
+      }
+    }
+
     const products = cartProducts.map((product) => ({
       id: product.id,
       quantity: product.quantity,
@@ -53,27 +68,61 @@ export function CartResume() {
     }));
 
     try {
-      const { data } = await api.post('/create-payment-intent', {
-        products,
-        deliveryTax,
-        address,
-        total: totalAmount,
-      });
-
-      navigate('/checkout', {
-        state: {
-          ...data,
+      // Para cartão online, usar o fluxo do Stripe
+      if (paymentMethod === 'cartao_online') {
+        const { data } = await api.post('/create-payment-intent', {
           products,
-          address,
           deliveryTax,
+          address,
           total: totalAmount,
+        });
+
+        navigate('/checkout', {
+          state: {
+            ...data,
+            products,
+            address,
+            deliveryTax,
+            total: totalAmount,
+            paymentMethod,
+            user: {
+              id: userInfo.id,
+              name: userInfo.name,
+            },
+          },
+        });
+      } else {
+        // Para PIX, dinheiro e cartão na entrega, criar pedido direto
+        const orderData = {
           user: {
             id: userInfo.id,
             name: userInfo.name,
           },
-        },
-      });
+          products: cartProducts.map((p) => ({
+            id: p.id,
+            quantity: p.quantity,
+            price: p.price,
+          })),
+          address,
+          deliveryTax,
+          total: totalAmount,
+          status: 'Pedido realizado',
+          paymentMethod,
+          changeFor: needsChange ? changeFor * 100 : null,
+          needsChange,
+        };
+
+        const response = await api.post('/orders', orderData);
+        
+        toast.success('Pedido realizado com sucesso!');
+        
+        setTimeout(() => {
+          clearCart();
+          navigate('/meus-pedidos');
+        }, 2000);
+      }
     } catch (err) {
+      console.error('Erro ao processar pedido:', err);
       toast.error('Algo deu errado, tente novamente!');
     }
   };
@@ -104,6 +153,15 @@ export function CartResume() {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             required
+          />
+
+          <PaymentMethodSelector
+            selectedMethod={paymentMethod}
+            onMethodChange={setPaymentMethod}
+            changeFor={changeFor}
+            onChangeForChange={setChangeFor}
+            needsChange={needsChange}
+            onNeedsChangeChange={setNeedsChange}
           />
 
           <p className="delivery-tax">Taxa de Entrega</p>

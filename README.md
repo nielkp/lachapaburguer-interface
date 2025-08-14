@@ -8,10 +8,12 @@ Interface web para sistema de e-commerce de hamburgueria com integração Stripe
 - ✅ Carrinho de compras interativo
 - ✅ Sistema de autenticação
 - ✅ Checkout integrado com Stripe
-- ✅ Gestão de pedidos
+- ✅ Gestão completa de pedidos com status coloridos
+- ✅ Ordenação automática de pedidos (mais recentes primeiro)
+- ✅ Sistema de múltiplos métodos de pagamento (PIX, dinheiro, cartão)
 - ✅ Interface responsiva e moderna
 - ✅ Upload de imagens para produtos
-- ✅ Painel administrativo
+- ✅ Painel administrativo completo
 
 ## 📋 Requisitos
 
@@ -57,6 +59,7 @@ A aplicação estará disponível em `http://localhost:5173`
 - Navegação por categorias de produtos
 - Adicionar/remover itens do carrinho
 - Cálculo automático de totais e taxas de entrega
+- Múltiplos métodos de pagamento (PIX, dinheiro, cartão online/entrega)
 - Finalização de compra com Stripe
 
 ### 👤 Autenticação
@@ -67,13 +70,28 @@ A aplicação estará disponível em `http://localhost:5173`
 ### 🎛️ Painel Administrativo
 - Gestão de produtos (CRUD)
 - Gestão de categorias (CRUD)
-- Visualização e atualização de pedidos
+- Visualização e atualização de pedidos com status coloridos
+- Filtros de pedidos por status
+- Ordenação automática de pedidos (mais recentes primeiro)
 - Upload de imagens
 
 ### 💳 Pagamentos
 - Integração completa com Stripe
+- Múltiplos métodos: PIX, dinheiro, cartão online, cartão na entrega
+- Sistema de troco para pagamento em dinheiro
 - Processamento seguro de cartões
 - Confirmação de pagamento em tempo real
+- Popup de confirmação com fundo sólido
+
+### 📊 Sistema de Status de Pedidos
+- **Pedido Realizado** (Laranja) - Pedido criado e confirmado
+- **Em Preparação** (Azul) - Pedido sendo preparado na cozinha
+- **Pedido Pronto** (Verde) - Pedido finalizado e pronto para entrega
+- **Pedido à Caminho** (Roxo) - Pedido saiu para entrega
+- **Entregue** (Verde Claro) - Pedido entregue ao cliente
+- **Cancelado** (Vermelho) - Pedido cancelado
+- Ordenação automática: pedidos mais recentes aparecem primeiro
+- Interface visual consistente entre área do cliente e painel administrativo
 
 ## 🗂️ Estrutura do Projeto
 

@@ -15,6 +15,9 @@
     justify-content: center;
     align-items: center;
     min-height: 80vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  min-height: 100vh;
 }
 
 #payment-form {
@@ -27,6 +30,7 @@
     padding: 40px;
     margin-top: auto;
     margin-bottom: auto;
+    background-color: #ffffff;
 }
 
 
@@ -144,6 +148,7 @@
     animation: fadeInAnimation 1s ease forwards;
     margin-top: auto;
     margin-bottom: auto;
+    background-color: #ffffff;
 }
 
 #status-icon {

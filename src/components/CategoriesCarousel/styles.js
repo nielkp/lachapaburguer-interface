@@ -37,7 +37,7 @@ export const Container = styled.div`
 `; //FIM
 
 export const ContainerItems = styled.div`
-  background: url('${(props) => props.imageUrl}');
+  background: url('${props => props.imageUrl}');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

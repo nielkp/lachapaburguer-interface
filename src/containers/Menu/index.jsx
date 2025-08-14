@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Footer } from '../../components/Footer';
 import {
   Banner,
   CategoryButton,
@@ -102,7 +101,6 @@ export function Menu() {
           <CardProduct product={product} key={product.id} />
         ))}
       </ProductsContainer>
-      <Footer />
     </Container>
   );
 }

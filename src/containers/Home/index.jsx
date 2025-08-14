@@ -1,7 +1,6 @@
 import { CategoriesCarousel, OffersCarousel } from '../../components';
 import { Banner, Container, Content } from './styles';
 import { useUser } from '../../hooks/UserContext';
-import { Footer } from '../../components/Footer';
 
 export function Home() {
   console.log(useUser());
@@ -20,7 +19,6 @@ export function Home() {
           <OffersCarousel />
         </Content>
       </Container>
-      <Footer />
     </main>
   );
 }
