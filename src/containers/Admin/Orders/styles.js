@@ -45,3 +45,21 @@ export const FilterOption = styled.button`
         color: ${(props) => getStatusColor(props.$statusId)};
     }
 `;//FIM
+
+export const Container = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    padding: 0 20px;
+    
+    img {
+        height: 40px;
+    }
+    
+    h1 {
+        color: ${props => props.theme.white};
+        font-size: 28px;
+        margin: 0;
+    }
+`;//FIM

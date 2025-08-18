@@ -6,30 +6,68 @@ import {
   TableHead,
   TableRow,
   TableHeaderCell,
-  Paper
-} from "../../../components/SimpleTable";
-import { Row } from "./row";
-import { useEffect, useState } from "react";
-import { api } from "../../../services/api";
-import { orderStatusOptions } from "./orderStatus";
-import { FilterOption, Filter } from "./styles";
+  Paper,
+} from '../../../components/SimpleTable';
+import { Row } from './row';
+import { useEffect, useState, useRef } from 'react';
+import { api } from '../../../services/api';
+import { orderStatusOptions } from './orderStatus';
+import { FilterOption, Filter, Container } from './styles';
+import { toast } from 'react-toastify';
+import Logo from '../../../assets/logotransparente.png';
 
 export function Orders() {
   const [orders, setOrders] = useState([]); //BACKUP
   const [filteredOrders, setFilteredOrders] = useState([]); //VALORES PARA A TELA
   const [activeStatus, setActiveStatus] = useState(0);
   const [rows, setRows] = useState([]);
+  const intervalRef = useRef(null);
 
   useEffect(() => {
     async function loadOrders() {
-      const { data } = await api.get("orders");
-
-      setOrders(data);
-      setFilteredOrders(data);
+      try {
+        const { data } = await api.get('orders');
+        setOrders(data);
+        setFilteredOrders(data);
+      } catch (error) {
+        console.error('Erro ao carregar pedidos:', error);
+      }
     }
 
+    // Carregamento inicial
     loadOrders();
+
+    // Configurar polling para atualizações automáticas a cada 30 segundos
+    intervalRef.current = setInterval(() => {
+      loadOrders();
+      toast.info('🔄 Pedidos atualizados automaticamente!', {
+        position: 'top-right',
+        autoClose: 2000,
+      });
+    }, 30000); // 30 segundos
+
+    // Cleanup do interval quando o componente for desmontado
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, []);
+
+  // Função para atualização manual
+  const handleManualRefresh = async () => {
+    try {
+      const { data } = await api.get('orders');
+      setOrders(data);
+      setFilteredOrders(data);
+      toast.success('📋 Pedidos atualizados manualmente!', {
+        position: 'top-right',
+        autoClose: 2000,
+      });
+    } catch (error) {
+      console.error('Erro ao carregar pedidos:', error);
+    }
+  };
 
   function createData(order) {
     return {
@@ -77,6 +115,38 @@ export function Orders() {
 
   return (
     <>
+      <Container>
+        <img src={Logo} alt="logo" />
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '100%',
+          }}
+        >
+          <h1 style={{ color: 'black' }}>Pedidos</h1>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span style={{ fontSize: '12px', color: '#28a745' }}>
+              🔄 Atualização automática ativada (30s)
+            </span>
+            <button
+              onClick={handleManualRefresh}
+              style={{
+                padding: '8px 15px',
+                fontSize: '14px',
+                backgroundColor: '#007bff',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+              }}
+            >
+              🔄 Atualizar Agora
+            </button>
+          </div>
+        </div>
+      </Container>
       <Filter>
         {orderStatusOptions.map((status) => (
           <FilterOption
